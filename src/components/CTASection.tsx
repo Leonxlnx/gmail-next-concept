@@ -8,38 +8,39 @@ export default function CTASection() {
     const inView = useInView(ref, { once: true, margin: "-80px" });
 
     return (
-        <section id="download" className="py-24 md:py-32 px-6 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #E8F0FE 0%, #F8F9FA 50%, #E8F0FE 100%)" }}>
+        <section id="download" style={{ padding: "96px 24px", position: "relative", overflow: "hidden", background: "linear-gradient(160deg, #E8F0FE 0%, #F8F9FA 50%, #E8F0FE 100%)" }}>
             {/* Decorative blobs */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
                 <div
-                    className="absolute -top-20 -left-20 w-[300px] h-[300px] animate-morph animate-float opacity-[0.08]"
-                    style={{ background: "linear-gradient(135deg, #1A73E8, #4285F4)" }}
+                    className="animate-morph animate-float"
+                    style={{ position: "absolute", top: -80, left: -80, width: 300, height: 300, opacity: 0.08, background: "linear-gradient(135deg, #1A73E8, #4285F4)" }}
                 />
                 <div
-                    className="absolute -bottom-20 -right-20 w-[250px] h-[250px] animate-morph animate-float-slow opacity-[0.06]"
-                    style={{ background: "linear-gradient(135deg, #EA4335, #FBBC04)", animationDelay: "3s" }}
+                    className="animate-morph animate-float-slow"
+                    style={{ position: "absolute", bottom: -80, right: -80, width: 250, height: 250, opacity: 0.06, background: "linear-gradient(135deg, #EA4335, #FBBC04)", animationDelay: "3s" }}
                 />
             </div>
 
             <motion.div
                 ref={ref}
-                className="max-w-3xl mx-auto text-center relative z-10"
+                style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 10 }}
                 initial={{ opacity: 0, y: 40 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7 }}
             >
-                <h2 className="heading-l mb-5">
+                <h2 className="heading-l" style={{ marginBottom: 20 }}>
                     Ready to upgrade your{" "}
                     <span className="gradient-text">inbox?</span>
                 </h2>
-                <p className="body-l mb-10 max-w-xl mx-auto" style={{ color: "var(--text-secondary)" }}>
-                    Join 1.8 billion people who trust Gmail every day. It's free, it's fast, and it's the smartest email on the planet.
+                <p className="body-l" style={{ color: "var(--text-secondary)", marginBottom: 40, maxWidth: 560, margin: "0 auto 40px auto" }}>
+                    Join 1.8 billion people who trust Gmail every day. It&apos;s free, it&apos;s fast, and it&apos;s the smartest email on the planet.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16 }}>
                     <motion.a
                         href="https://accounts.google.com/signup"
-                        className="btn-pill btn-pill-primary no-underline text-base"
+                        className="btn-pill btn-pill-primary"
+                        style={{ textDecoration: "none", fontSize: 16 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                     >
@@ -48,7 +49,8 @@ export default function CTASection() {
                     </motion.a>
                     <motion.a
                         href="https://workspace.google.com"
-                        className="btn-pill btn-pill-secondary no-underline text-base"
+                        className="btn-pill btn-pill-secondary"
+                        style={{ textDecoration: "none", fontSize: 16 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                     >
@@ -58,16 +60,16 @@ export default function CTASection() {
                 </div>
 
                 {/* App badges */}
-                <div className="flex items-center justify-center gap-6 mt-10 opacity-60">
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, marginTop: 40, opacity: 0.6 }}>
                     <img
                         src="https://www.gstatic.com/images/branding/product/2x/play_prism_64dp.png"
                         alt="Google Play"
-                        className="h-8 w-auto object-contain"
+                        style={{ height: 32, width: "auto", objectFit: "contain" }}
                     />
                     <img
                         src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                         alt="App Store"
-                        className="h-8 w-auto object-contain"
+                        style={{ height: 32, width: "auto", objectFit: "contain" }}
                     />
                 </div>
             </motion.div>

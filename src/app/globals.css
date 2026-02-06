@@ -355,3 +355,37 @@ body {
 .animate-morph {
   animation: morph 12s ease-in-out infinite;
 }
+
+/* ── Responsive breakpoints ──────────────────────────── */
+@media (max-width: 768px) {
+  .security-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+
+  .nav-links-desktop {
+    display: none !important;
+  }
+
+  .nav-signin-desktop {
+    display: none !important;
+  }
+
+  .heading-l {
+    font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+  }
+
+  .display-xl {
+    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

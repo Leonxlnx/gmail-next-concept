@@ -51,51 +51,55 @@ export default function Security() {
     const headerInView = useInView(headerRef, { once: true, margin: "-80px" });
 
     return (
-        <section id="security" className="py-24 md:py-32 px-6" style={{ background: "var(--bg-surface)" }}>
-            <div className="max-w-[1200px] mx-auto">
+        <section id="security" style={{ padding: "96px 24px", background: "var(--bg-surface)" }}>
+            <div style={{ maxWidth: 1200, margin: "0 auto" }}>
                 {/* Header */}
                 <motion.div
                     ref={headerRef}
-                    className="text-center mb-16 md:mb-20"
+                    style={{ textAlign: "center", marginBottom: 64 }}
                     initial={{ opacity: 0, y: 30 }}
                     animate={headerInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="micro-label mb-4" style={{ color: "var(--google-green)" }}>
+                    <div className="micro-label" style={{ color: "var(--google-green)", marginBottom: 16 }}>
                         Security
                     </div>
-                    <h2 className="heading-l mb-4">
+                    <h2 className="heading-l" style={{ marginBottom: 16 }}>
                         Protected at{" "}
                         <span className="gradient-text">every level</span>
                     </h2>
-                    <p className="body-l max-w-xl mx-auto" style={{ color: "var(--text-secondary)" }}>
-                        Built on Google's world-class infrastructure, Gmail keeps your data safe with multiple layers of security.
+                    <p className="body-l" style={{ color: "var(--text-secondary)", maxWidth: 560, margin: "0 auto" }}>
+                        Built on Google&apos;s world-class infrastructure, Gmail keeps your data safe with multiple layers of security.
                     </p>
                 </motion.div>
 
                 {/* Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }} className="security-grid">
                     {SECURITY_FEATURES.map((feature, i) => (
                         <motion.div
                             key={feature.title}
-                            className="bento-card p-8 md:p-10"
+                            className="bento-card"
+                            style={{ padding: "32px" }}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                             viewport={{ once: true, margin: "-60px" }}
                         >
                             <motion.div
-                                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                                style={{ background: "var(--bg-surface)" }}
+                                style={{
+                                    width: 56, height: 56, borderRadius: 16,
+                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                    marginBottom: 20, background: "var(--bg-surface)",
+                                }}
                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                             >
                                 {feature.icon}
                             </motion.div>
-                            <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text-primary)" }}>
+                            <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: "var(--text-primary)" }}>
                                 {feature.title}
                             </h3>
-                            <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                            <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--text-secondary)", margin: 0 }}>
                                 {feature.description}
                             </p>
                         </motion.div>

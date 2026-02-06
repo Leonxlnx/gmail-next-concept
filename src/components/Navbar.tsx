@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function Navbar() {
@@ -20,61 +20,52 @@ export default function Navbar() {
 
     return (
         <motion.nav
-            className="fixed top-0 left-0 right-0 z-50"
+            style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
             <motion.div
-                className="mx-auto transition-all duration-500"
+                style={{ margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}
                 animate={{
                     paddingTop: scrolled ? 8 : 16,
                     paddingBottom: scrolled ? 8 : 16,
-                    paddingLeft: 24,
-                    paddingRight: 24,
                 }}
+                transition={{ duration: 0.4 }}
             >
                 <motion.div
-                    className="max-w-[1440px] mx-auto flex items-center justify-between rounded-full px-6"
+                    style={{
+                        maxWidth: 1440, margin: "0 auto",
+                        display: "flex", alignItems: "center", justifyContent: "space-between",
+                        borderRadius: 999, borderStyle: "solid",
+                    }}
                     animate={{
-                        backgroundColor: scrolled
-                            ? "rgba(255,255,255,0.82)"
-                            : "rgba(255,255,255,0)",
+                        backgroundColor: scrolled ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0)",
                         backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "blur(0px)",
-                        boxShadow: scrolled
-                            ? "0 2px 20px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.1)"
-                            : "0 0 0 rgba(0,0,0,0)",
+                        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.1)" : "0 0 0 rgba(0,0,0,0)",
                         padding: scrolled ? "10px 28px" : "14px 28px",
                         borderWidth: scrolled ? 1 : 0,
-                        borderColor: scrolled
-                            ? "rgba(0,0,0,0.04)"
-                            : "rgba(0,0,0,0)",
+                        borderColor: scrolled ? "rgba(0,0,0,0.04)" : "rgba(0,0,0,0)",
                     }}
                     transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                    style={{ borderStyle: "solid" }}
                 >
                     {/* Logo */}
-                    <a href="#" className="flex items-center gap-3 no-underline">
-                        <img
-                            src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
-                            alt="Gmail"
-                            width={32}
-                            height={32}
-                            className="w-8 h-8"
-                        />
-                        <span className="text-[20px] font-semibold tracking-tight" style={{ color: "var(--text-primary)" }}>
-                            Gmail
-                        </span>
+                    <a href="#" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
+                        <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" alt="Gmail" width={32} height={32} style={{ width: 32, height: 32 }} />
+                        <span style={{ fontSize: 20, fontWeight: 600, letterSpacing: "-0.5px", color: "var(--text-primary)" }}>Gmail</span>
                     </a>
 
-                    {/* Nav Links */}
-                    <div className="hidden md:flex items-center gap-1">
+                    {/* Nav Links — desktop only */}
+                    <div className="nav-links-desktop" style={{ display: "flex", alignItems: "center", gap: 4 }}>
                         {navLinks.map((link) => (
                             <a
                                 key={link.label}
                                 href={link.href}
-                                className="px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 no-underline"
-                                style={{ color: "var(--text-secondary)" }}
+                                style={{
+                                    padding: "8px 16px", fontSize: 14, fontWeight: 500,
+                                    borderRadius: 999, textDecoration: "none",
+                                    color: "var(--text-secondary)", transition: "all 0.3s ease",
+                                }}
                                 onMouseEnter={(e) => {
                                     e.currentTarget.style.color = "var(--text-primary)";
                                     e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.04)";
@@ -90,11 +81,15 @@ export default function Navbar() {
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center gap-3">
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                         <a
                             href="https://accounts.google.com"
-                            className="hidden sm:inline-flex text-sm font-medium no-underline px-4 py-2 rounded-full transition-colors duration-300"
-                            style={{ color: "var(--google-blue)" }}
+                            className="nav-signin-desktop"
+                            style={{
+                                fontSize: 14, fontWeight: 500, textDecoration: "none",
+                                padding: "8px 16px", borderRadius: 999,
+                                color: "var(--google-blue)", transition: "background 0.3s ease",
+                            }}
                             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(26,115,232,0.08)")}
                             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                         >
@@ -102,7 +97,8 @@ export default function Navbar() {
                         </a>
                         <motion.a
                             href="https://accounts.google.com/signup"
-                            className="btn-pill-primary text-sm !py-2.5 !px-5 no-underline"
+                            className="btn-pill-primary"
+                            style={{ fontSize: 14, padding: "10px 20px", textDecoration: "none" }}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.97 }}
                         >
